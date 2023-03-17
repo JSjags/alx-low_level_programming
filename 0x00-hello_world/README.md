@@ -18,3 +18,6 @@
 
 ### 6-size.c
 -Size is not grandeur, and territory does not make a nation
+
+### 100-intel
+-Write a script that generates the assembly code (Intel syntax) of a C code and save it in an output file.
