@@ -1,4 +1,7 @@
 # 0x06-pointers_arrays_strings
 
 ## 0-strcat.c
-- Write a function that concatenates two strings.
+- A function that concatenates two strings.
+
+## 1-strncat.c
+- A function that concatenates two strings using no more than n bytes from src.
