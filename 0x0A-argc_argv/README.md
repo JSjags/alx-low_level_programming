@@ -6,3 +6,4 @@
 
 - 2-args.c:- A program that prints on the terminal all the arguments passed .
 
+- 3-mul.c:- A program that multiplies two numbers.
