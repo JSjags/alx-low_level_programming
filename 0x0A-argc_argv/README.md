@@ -3,3 +3,6 @@
 - 0-whatsmyname.c:- A program that prints its name, followed by a new line.
 
 - 1-args.c:- A program that prints the number of arguments passed.
+
+- 2-args.c:- A program that prints on the terminal all the arguments passed .
+
