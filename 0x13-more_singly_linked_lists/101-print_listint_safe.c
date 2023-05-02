@@ -1,29 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a linked list, safely
- * @head: list of type listint_t to print
- *
- * Return: number of nodes in the list
- */
+* print_listint_safe - a function that prints a listint_t
+*linked list
+* @head: points to the beginning of a linked list
+* Return: the number of nodes in the list
+**/
+
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t n = 0;
-	long int dif;
+	const listint_t *f_ptr, *s_ptr;
+	size_t size;
 
-	while (head)
+	size = 0;
+
+	if (head == NULL)
+		return (0);
+
+	s_ptr = head;
+	f_ptr = head->next;
+
+	while (f_ptr != NULL && f_ptr < s_ptr)
 	{
-		dif = head - head->next;
-		n++;
-		printf("[%p] %d\n", (void *)head, head->n);
-		if (dif > 0)
-			head = head->next;
-		else
-		{
-			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
-			break;
-		}
+		size += 1;
+	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
+		s_ptr = s_ptr->next;
+		f_ptr = f_ptr->next;
 	}
+	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
+	size += 1;
+	if (f_ptr)
+		printf("-> [%p] %i\n", (void *)f_ptr, f_ptr->n);
 
-	return (n);
+	return (size);
 }
