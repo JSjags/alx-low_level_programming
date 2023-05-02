@@ -1,39 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "lists.h"
 
 /**
-* print_listint_safe - a function that prints a listint_t
-*linked list
-* @head: points to the beginning of a linked list
-* Return: number of nodes in the linked list
-**/
+ * free_listp - frees a linked list
+ * @head: head of a linked list.
+ *
+ * Return: no return.
+ */
+void free_listp(listp_t **head)
+{
+	listp_t *t;
+	listp_t *curr;
 
+	if (head != NULL)
+	{
+		curr = *head;
+		while ((t = curr) != NULL)
+		{
+			curr = curr->next;
+			free(t);
+		}
+		*head = NULL;
+	}
+}
+
+/**
+ * print_listint_safe - prints a linked list.
+ * @head: head of a list.
+ *
+ * Return: number of nodes in the list.
+ */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *f_ptr, *s_ptr;
-	size_t size;
+	size_t n_of_nodes = 0;
+	listp_t *h_ptr, *new, *add;
 
-	size = 0;
-
-	if (head == NULL)
-		return (0);
-
-	s_ptr = head;
-	f_ptr = head->next;
-
-	while (f_ptr != NULL && f_ptr < s_ptr)
+	hptr = NULL;
+	while (head != NULL)
 	{
-		size += 1;
-	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
-		s_ptr = s_ptr->next;
-		f_ptr = f_ptr->next;
-	}
-	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
-	size += 1;
-	if (f_ptr)
-		printf("-> [%p] %i\n", (void *)f_ptr, f_ptr->n);
+		new = malloc(sizeof(listp_t));
 
-	return (size);
+		if (new == NULL)
+			exit(98);
+
+		new->p = (void *)head;
+		new->next = hptr;
+		hptr = new;
+
+		add = hptr;
+
+		while (add->next != NULL)
+		{
+			add = add->next;
+			if (head == add->p)
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listp(&hptr);
+				return (n_of_nodes);
+			}
+		}
+
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+		n_of_nodes++;
+	}
+
+	free_listp(&hptr);
+	return (n_of_nodes);
 }
