@@ -7,33 +7,33 @@
 * print_listint_safe - a function that prints a listint_t
 *linked list
 * @head: points to the beginning of a linked list
-* Return: the number of nodes in the linked list
+* Return: number of nodes in the linked list
 **/
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *f_p, *s_p;
-	size_t s;
+	const listint_t *f_ptr, *s_ptr;
+	size_t size;
 
-	s = 0;
+	size = 0;
 
 	if (head == NULL)
 		return (0);
 
-	s_p = head;
-	f_p = head->next;
+	s_ptr = head;
+	f_ptr = head->next;
 
-	while (f_p != NULL && f_p < s_p)
+	while (f_ptr != NULL && f_ptr < s_ptr)
 	{
-		s += 1;
-	printf("[%p] %i\n", (void *)s_p, s_p->n);
-		s_p = s_p->next;
-		f_p = f_p->next;
+		size += 1;
+	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
+		s_ptr = s_ptr->next;
+		f_ptr = f_ptr->next;
 	}
-	printf("[%p] %i\n", (void *)s_p, s_p->n);
-	s += 1;
-	if (f_p)
-		printf("-> [%p] %i\n", (void *)f_p, f_p->n);
+	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
+	size += 1;
+	if (f_ptr)
+		printf("-> [%p] %i\n", (void *)f_ptr, f_ptr->n);
 
-	return (s);
+	return (size);
 }
