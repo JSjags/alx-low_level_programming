@@ -12,7 +12,7 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *f_ptr, *s_ptr;
+	const listint_t *f_p, *s_p;
 	size_t size;
 
 	size = 0;
@@ -20,20 +20,20 @@ size_t print_listint_safe(const listint_t *head)
 	if (head == NULL)
 		return (0);
 
-	s_ptr = head;
-	f_ptr = head->next;
+	s_p = head;
+	f_p = head->next;
 
-	while (f_ptr != NULL && f_ptr < s_ptr)
+	while (f_p != NULL && f_p < s_p)
 	{
 		size += 1;
-	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
-		s_ptr = s_ptr->next;
-		f_ptr = f_ptr->next;
+	printf("[%p] %i\n", (void *)s_p, s_p->n);
+		s_p = s_p->next;
+		f_p = f_p->next;
 	}
-	printf("[%p] %i\n", (void *)s_ptr, s_ptr->n);
+	printf("[%p] %i\n", (void *)s_p, s_p->n);
 	size += 1;
-	if (f_ptr)
-		printf("-> [%p] %i\n", (void *)f_ptr, f_ptr->n);
+	if (f_p)
+		printf("-> [%p] %i\n", (void *)f_p, f_p->n);
 
 	return (size);
 }
