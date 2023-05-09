@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv)
 {
-	int val0, val1, res0, res1;
+	int f0, f1, res0, res1;
 	char *buffer;
 
 	if (argc != 3)
@@ -22,36 +22,36 @@ int main(int argc, char **argv)
 	if (!buffer)
 		return (0);
 
-	val1 = open(argv[1], O_RDONLY);
-	error_checker_98(val1, buffer, argv[1]);
-	val0 = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	error_checker_99(val0, buffer, argv[2]);
+	f1 = open(argv[1], O_RDONLY);
+	error_98(f1, buffer, argv[1]);
+	f0 = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	error_99(f0, buffer, argv[2]);
 	do {
-		res0 = read(val1, buffer, BUF_SIZE);
+		res0 = read(f1, buffer, BUF_SIZE);
 		if (res0 == 0)
 			break;
-		error_checker_98(res0, buffer, argv[1]);
-		res1 = write(val0, buffer, res0);
-		error_checker_99(res1, buffer, argv[2]);
+		error_98(res0, buffer, argv[1]);
+		res1 = write(f0, buffer, res0);
+		error_99(res1, buffer, argv[2]);
 	} while (res1 >= BUF_SIZE);
-	res0 = close(val0);
-	error_checker_100(res0, buffer);
-	res0 = close(val1);
-	error_checker_100(res0, buffer);
+	res0 = close(f0);
+	error_100(res0, buffer);
+	res0 = close(f1);
+	error_100(res0, buffer);
 	free(buffer);
 	return (0);
 }
 
 /**
-* error_checker_98 - checks for error 98
-* @val0: the value to check
+* error_98 - checks for error 98
+* @f0: the value to check for
 * @buffer: the buffer
 * @argv: argument
 **/
-void error_checker_98(int val0, char *buffer, char *argv)
+void error_98(int f0, char *buffer, char *argv)
 {
 
-	if (val0 < 0)
+	if (f0 < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
 		free(buffer);
@@ -60,14 +60,14 @@ void error_checker_98(int val0, char *buffer, char *argv)
 }
 
 /**
-* error_checker_99 - checks for error 99
-* @val0: value to check
+* error_99 - checks for error 99
+* @f0: value to check for
 * @buffer: the buffer
 * @argv: argument
 */
-void error_checker_99(int val0, char *buffer, char *argv)
+void error_99(int f0, char *buffer, char *argv)
 {
-	if (val0 < 0)
+	if (f0 < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
 		free(buffer);
@@ -75,13 +75,13 @@ void error_checker_99(int val0, char *buffer, char *argv)
 	}
 }
 /**
-* error_checker_100 - checks for error 100
-* @val0: the value to check
+* error_100 - checks for error 100
+* @f0: the value to check for
 * @buffer: the buffer
 */
-void error_checker_100(int val0, char *buffer)
+void error_100(int f0, char *buffer)
 {
-	if (val0 < 0)
+	if (f0 < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %i\n", f0);
 		free(buffer);
