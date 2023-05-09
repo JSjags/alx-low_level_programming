@@ -65,7 +65,7 @@ void error_checker_98(int val0, char *buffer, char *argv)
 * @buffer: the buffer
 * @argv: argument
 */
-void error_99(int val0, char *buffer, char *argv)
+void error_checker_99(int val0, char *buffer, char *argv)
 {
 	if (val0 < 0)
 	{
@@ -79,7 +79,7 @@ void error_99(int val0, char *buffer, char *argv)
 * @val0: the value to check
 * @buffer: the buffer
 */
-void error_100(int val0, char *buffer)
+void error_checkers_100(int val0, char *buffer)
 {
 	if (val0 < 0)
 	{
